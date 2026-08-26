@@ -97,6 +97,25 @@ function playRound(getHumanChoice, getComputerChoice){
 
 }
 
+// log score and outcome of match
+function logResult(humanScore, computerScore) {
+
+    // if game tie log result with score
+    if (humanScore == computerScore) {
+        console.log(`Game was a tie! PlayerScore: ${humanScore}, ComputerScore: ${computerScore}.`);
+    }
+
+    // if player won log result with score
+    else if (humanScore > computerScore) {
+        console.log(`Player Won! PlayerScore: ${humanScore}, ComputerScore: ${computerScore}.`);
+    }
+
+    // if computer won log result with score
+    else {
+        console.log(`Computer Won! ComputerScore: ${computerScore}, PlayerScore: ${humanScore} .`);
+    }
+}
+
 // create function called playGame
 function playGame(playRound) {
 
@@ -104,22 +123,27 @@ function playGame(playRound) {
     let humanScore = 0;
     let computerScore = 0;
     
-
     // call playRound 5 times and increment score for winner    
     for (let i = 0; i < 5; i++) {
         result = playRound(getHumanChoice, getComputerChoice);
 
+        // increment score of player, if player won
         if (result === true) {
             humanScore += 1;
         }
 
+        // increment score of computer, if computer won
         else if (result === false) {
             computerScore += 1;
         }
 
+        // log score, start new line
         console.log(`PlayerScore: ${humanScore}`);
         console.log(`ComputerScore: ${computerScore}`);
+        console.log(" ")
     }
+
+    logResult(humanScore, computerScore)
 }
 
 playGame(playRound)
