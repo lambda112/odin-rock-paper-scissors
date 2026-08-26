@@ -1,9 +1,7 @@
-let humanScore = 0
-let computerScore = 0
-
 // Create getComputerChoice function with random number parameter
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function getComputerChoice(num = Math.floor(Math.random() * 3)) {
+
     // if parameter == 0 choose rock
     if (num == 0) {
         return "Rock";
@@ -22,6 +20,7 @@ function getComputerChoice(num = Math.floor(Math.random() * 3)) {
 
 // Create function getHumanChoice
 function getHumanChoice() {
+
     // While prompt does not equal rock, paper or scissors loop
     while (true) {
 
@@ -47,22 +46,20 @@ function getHumanChoice() {
 
 // Create function called playRound with humanChoice and computerChoice parameters
 function playRound(getHumanChoice, getComputerChoice){
-    human = getHumanChoice()
-    computer = getComputerChoice()
+    human = getHumanChoice();
+    computer = getComputerChoice();
 
     // if paper and rock or vice-versa, log "paper beats rock" return round winner
     if ((human === "Rock" || human === "Paper") && (computer === "Rock" ||computer === "Paper"))
 
         if (human == "Paper") {
             console.log("“You Won! Paper beats Rock”.")
-            humanScore += 1;
-            return "Player Wins!"
+            return true;
         }
 
         else {
             console.log("“You Lost! Paper beats Rock”.")
-            computerScore += 1;
-            return "Computer Wins!"
+            return false;
         }
 
     // else if rock and scissors or vice-versa, log "rock beats scissors" return round winner
@@ -70,14 +67,12 @@ function playRound(getHumanChoice, getComputerChoice){
 
         if (human == "Rock") {
             console.log("“You Won! Rock beats Scissors”.")
-            humanScore += 1;
-            return "Player Wins!"
+            return true;
         }
 
         else {
             console.log("“You Lost! Rock beats Scissors”.")
-            computerScore += 1;
-            return "Computer Wins!"
+            return false;
         }
 
 
@@ -85,18 +80,40 @@ function playRound(getHumanChoice, getComputerChoice){
     else {
         if (human == "Scissors") {
             console.log("“You Won! Scissors beats Paper”.")
-            humanScore += 1;
-            return "Player Wins!"
+            return true;
         }
 
         else {
             console.log("“You Lost! Scissors beats Paper”.")
-            computerScore += 1;
-            return "Computer Wins!"
+            return false;
         }
     }
 }
 
-console.log(playRound(getHumanChoice, getComputerChoice))
+// create function called playGame
+function playGame(playRound) {
+
+    // move score variables
+    let humanScore = 0;
+    let computerScore = 0;
+    
+
+    // call playRound 5 times and increment score for winner    
+    for (let i = 0; i < 6; i++) {
+        result = playRound(getHumanChoice, getComputerChoice);
+
+        if (result === true) {
+            humanScore += 1;
+        }
+
+        else {
+            computerScore += 1;
+        }
 
 
+        console.log(humanScore);
+        console.log(computerScore);
+    }
+}
+
+playGame(playRound)
