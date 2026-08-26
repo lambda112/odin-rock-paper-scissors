@@ -25,7 +25,7 @@ function getHumanChoice() {
     while (true) {
 
         // Get user input
-        userChoice = prompt("Choose Between Rock, Paper and Scissors.").toLowerCase()
+        let userChoice = prompt("Choose Between Rock, Paper and Scissors.").toLowerCase()
 
         // if input equals rock return rock
         if (userChoice == "rock") {
@@ -45,18 +45,18 @@ function getHumanChoice() {
 }
 
 // Create function called playRound with humanChoice and computerChoice parameters
-function playRound(getHumanChoice, getComputerChoice){
-    human = getHumanChoice();
-    computer = getComputerChoice();
+function playRound(playerChoice, computerChoice){
+    let human = playerChoice();
+    let computer = computerChoice();
 
     // if tie log to console
-    if (human === computer){ 
+    if (human === computer) { 
         console.log(`Its a tie! Both used ${human}.`)
         return "tie"
     }
 
     // if paper and rock or vice-versa, log "paper beats rock" return round winner
-    else if ((human === "Rock" || human === "Paper") && (computer === "Rock" ||computer === "Paper"))
+    else if ((human === "Rock" || human === "Paper") && (computer === "Rock" ||computer === "Paper")) {
 
         if (human == "Paper") {
             console.log("“You Won! Paper beats Rock”.")
@@ -67,9 +67,10 @@ function playRound(getHumanChoice, getComputerChoice){
             console.log("“You Lost! Paper beats Rock”.")
             return false;
         }
+    }
 
     // else if rock and scissors or vice-versa, log "rock beats scissors" return round winner
-    else if ((human === "Rock" || human === "Scissors") && (computer === "Rock" || computer === "Scissors"))
+    else if ((human === "Rock" || human === "Scissors") && (computer === "Rock" || computer === "Scissors")) {
 
         if (human == "Rock") {
             console.log("“You Won! Rock beats Scissors”.")
@@ -80,6 +81,7 @@ function playRound(getHumanChoice, getComputerChoice){
             console.log("“You Lost! Rock beats Scissors”.")
             return false;
         }
+    }
 
 
     // else scissors and paper or vice-versa, log "scissors beats paper" return round winner
@@ -112,7 +114,7 @@ function logResult(humanScore, computerScore) {
 
     // if computer won log result with score
     else {
-        console.log(`Computer Won! ComputerScore: ${computerScore}, PlayerScore: ${humanScore} .`);
+        console.log(`Computer Won! ComputerScore: ${computerScore}, PlayerScore: ${humanScore}.`);
     }
 }
 
@@ -125,7 +127,7 @@ function playGame(playRound) {
     
     // call playRound 5 times and increment score for winner    
     for (let i = 0; i < 5; i++) {
-        result = playRound(getHumanChoice, getComputerChoice);
+        let result = playRound(getHumanChoice, getComputerChoice);
 
         // increment score of player, if player won
         if (result === true) {
