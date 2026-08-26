@@ -49,8 +49,14 @@ function playRound(getHumanChoice, getComputerChoice){
     human = getHumanChoice();
     computer = getComputerChoice();
 
+    // if tie log to console
+    if (human === computer){ 
+        console.log(`Its a tie! Both used ${human}.`)
+        return "tie"
+    }
+
     // if paper and rock or vice-versa, log "paper beats rock" return round winner
-    if ((human === "Rock" || human === "Paper") && (computer === "Rock" ||computer === "Paper"))
+    else if ((human === "Rock" || human === "Paper") && (computer === "Rock" ||computer === "Paper"))
 
         if (human == "Paper") {
             console.log("“You Won! Paper beats Rock”.")
@@ -88,6 +94,7 @@ function playRound(getHumanChoice, getComputerChoice){
             return false;
         }
     }
+
 }
 
 // create function called playGame
@@ -99,20 +106,19 @@ function playGame(playRound) {
     
 
     // call playRound 5 times and increment score for winner    
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
         result = playRound(getHumanChoice, getComputerChoice);
 
         if (result === true) {
             humanScore += 1;
         }
 
-        else {
+        else if (result === false) {
             computerScore += 1;
         }
 
-
-        console.log(humanScore);
-        console.log(computerScore);
+        console.log(`PlayerScore: ${humanScore}`);
+        console.log(`ComputerScore: ${computerScore}`);
     }
 }
 
